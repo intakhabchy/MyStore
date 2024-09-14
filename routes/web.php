@@ -31,3 +31,4 @@ Route::get('/Productlist',[ProductController::class,'ProductList']);
 Route::get('/Productbycategory/{id}',[ProductController::class,'ProductByCategory']);
 Route::get('/Productbybrand/{id}',[ProductController::class,'ProductByBrand']);
 Route::get('/Productdetailbyid/{id}',[ProductController::class,'ProductDetailById']);
+Route::get('/Productslider',[ProductController::class,'ProductSlider']);
