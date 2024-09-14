@@ -24,4 +24,10 @@ class ProductController extends Controller
         $data = Product::where('brand_id','=',$brandId)->with(['brand','category'])->get();
         return ResponseHelper::ResMsg('success',$data,200);
     }
+
+    public function ProductDetailById(Request $request){
+        $productId = $request->id;
+        $data = Product::where('id','=',$productId)->with(['brand','category','product_detail']) ->get();
+        return ResponseHelper::ResMsg('success',$data,200);
+    }
 }
