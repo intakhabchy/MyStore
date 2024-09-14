@@ -12,4 +12,16 @@ class ProductController extends Controller
         $data = Product::with(['brand','category'])->get();
         return ResponseHelper::ResMsg('status',$data,200);
     }
+
+    public function ProductByCategory(Request $request){
+        $categoryId = $request->id;
+        $data = Product::where('category_id','=',$categoryId)->with(['brand','category'])->get();
+        return ResponseHelper::ResMsg('success',$data,200);
+    }
+
+    public function ProductByBrand(Request $request){
+        $brandId = $request->id;
+        $data = Product::where('brand_id','=',$brandId)->with(['brand','category'])->get();
+        return ResponseHelper::ResMsg('success',$data,200);
+    }
 }

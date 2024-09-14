@@ -26,4 +26,7 @@ Route::post('/Login',[UserController::class,'UserLogin']);
 
 Route::get('/Categorylist',[CategoryController::class,'CategoryList']);
 Route::get('/Brandlist',[BrandController::class,'BrandList']);
+
 Route::get('/Productlist',[ProductController::class,'ProductList']);
+Route::get('/Productbycategory/{id}',[ProductController::class,'ProductByCategory']);
+Route::get('/Productbybrand/{id}',[ProductController::class,'ProductByBrand']);
