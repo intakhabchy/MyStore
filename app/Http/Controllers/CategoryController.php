@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ResponseHelper;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     public function CategoryList(){
-        return Category::all();
+        $data = Category::all();
+        return ResponseHelper::ResMsg('success',$data,200);
     }
 }
