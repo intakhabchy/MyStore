@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\TokenVerificationMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,11 +25,11 @@ Route::get('/', function () {
 Route::post('/Registration',[UserController::class,'UserRegistration']);
 Route::post('/Login',[UserController::class,'UserLogin']);
 
-Route::get('/Categorylist',[CategoryController::class,'CategoryList']);
-Route::get('/Brandlist',[BrandController::class,'BrandList']);
+Route::get('/Categorylist',[CategoryController::class,'CategoryList'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/Brandlist',[BrandController::class,'BrandList'])->middleware([TokenVerificationMiddleware::class]);
 
-Route::get('/Productlist',[ProductController::class,'ProductList']);
-Route::get('/Productbycategory/{id}',[ProductController::class,'ProductByCategory']);
-Route::get('/Productbybrand/{id}',[ProductController::class,'ProductByBrand']);
-Route::get('/Productdetailbyid/{id}',[ProductController::class,'ProductDetailById']);
-Route::get('/Productslider',[ProductController::class,'ProductSlider']);
+Route::get('/Productlist',[ProductController::class,'ProductList'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/Productbycategory/{id}',[ProductController::class,'ProductByCategory'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/Productbybrand/{id}',[ProductController::class,'ProductByBrand'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/Productdetailbyid/{id}',[ProductController::class,'ProductDetailById'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/Productslider',[ProductController::class,'ProductSlider'])->middleware([TokenVerificationMiddleware::class]);
