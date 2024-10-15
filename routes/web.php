@@ -36,3 +36,4 @@ Route::get('/Productslider',[ProductController::class,'ProductSlider'])->middlew
 
 Route::post('/Addtocart',[ProductController::class,'AddProductToCart'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/Cartlist',[ProductController::class,'CartList'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/Deletecartlist/{product_id}',[ProductController::class,'DeleteCartList'])->middleware([TokenVerificationMiddleware::class]);

@@ -79,4 +79,11 @@ class ProductController extends Controller
         $data = ProductCart::where('user_id','=',$userId)->with('product')->get(); // with used to get data from product table
         return ResponseHelper::ResMsg('success',$data,200);
     }
+
+    public function DeleteCartList(Request $request){
+        $userId = $request->header('id');
+        $productId = $request->product_id;
+        $data = ProductCart::where('user_id','=',$userId)->where('product_id','=',$productId)->delete();
+        return ResponseHelper::ResMsg('success',$data,200);
+    }
 }
