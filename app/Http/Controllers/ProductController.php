@@ -73,4 +73,10 @@ class ProductController extends Controller
 
         return ResponseHelper::ResMsg('success',$data,200);
     }
+
+    public function CartList(Request $request){
+        $userId = $request->header('id');
+        $data = ProductCart::where('user_id','=',$userId)->with('product')->get(); // with used to get data from product table
+        return ResponseHelper::ResMsg('success',$data,200);
+    }
 }
