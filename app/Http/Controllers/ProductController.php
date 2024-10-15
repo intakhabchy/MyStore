@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\ResponseHelper;
 use App\Models\Product;
+use App\Models\ProductCart;
 use App\Models\ProductSlider;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,42 @@ class ProductController extends Controller
 
     public function ProductSlider(){
         $data = ProductSlider::all();
+        return ResponseHelper::ResMsg('success',$data,200);
+    }
+
+    public function AddProductToCart(Request $request){
+        
+        $userId = $request->header('id');
+        $productId = $request->input('product_id');
+        $size = $request->input('size');
+        $color = $request->input('color');
+        $qty = $request->input('qty');
+
+        $unitPrice = 0;
+
+        $productData = Product::where('id','=',$productId)->get();
+        
+        if($productData[0]['discount']==1){
+            $unitPrice = $productData[0]['discount_price'];
+        }
+        else{
+            $unitPrice = $productData[0]['price'];
+        }
+
+        $totalPrice = $qty*$unitPrice;
+
+        $data = ProductCart::updateOrCreate(
+            ['user_id'=>$userId,'product_id'=>$productId],
+            [
+                'user_id'=>$userId,
+                'product_id'=>$productId,
+                'qty'=>$qty,
+                'size'=>$size,
+                'color'=>$color,
+                'price'=>$totalPrice
+            ]
+        );
+
         return ResponseHelper::ResMsg('success',$data,200);
     }
 }

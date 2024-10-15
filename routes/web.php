@@ -33,3 +33,5 @@ Route::get('/Productbycategory/{id}',[ProductController::class,'ProductByCategor
 Route::get('/Productbybrand/{id}',[ProductController::class,'ProductByBrand'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/Productdetailbyid/{id}',[ProductController::class,'ProductDetailById'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/Productslider',[ProductController::class,'ProductSlider'])->middleware([TokenVerificationMiddleware::class]);
+
+Route::post('/Addtocart',[ProductController::class,'AddProductToCart'])->middleware([TokenVerificationMiddleware::class]);
