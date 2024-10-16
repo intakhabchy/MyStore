@@ -102,4 +102,10 @@ class ProductController extends Controller
         $data = ProductWishlist::where('user_id','=',$userId)->with('product')->get();
         return ResponseHelper::ResMsg('success',$data,200);
     }
+
+    public function RemoveWishList(Request $request){
+        $userId = $request->header('id');
+        $data = ProductWishlist::where(['user_id'=>$userId,'product_id'=>$request->product_id])->delete();
+        return ResponseHelper::ResMsg('success',$data,200);
+    }
 }

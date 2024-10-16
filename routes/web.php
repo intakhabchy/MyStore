@@ -40,3 +40,4 @@ Route::get('/Deletecartlist/{product_id}',[ProductController::class,'DeleteCartL
 
 Route::get('/Createwishlist/{product_id}',[ProductController::class,'CreateWishList'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/Productwishlist',[ProductController::class,'ProductWishList'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/Removewishlist/{product_id}',[ProductController::class,'RemoveWishList'])->middleware([TokenVerificationMiddleware::class]);
