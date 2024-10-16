@@ -6,6 +6,7 @@ use App\Helper\ResponseHelper;
 use App\Models\Product;
 use App\Models\ProductCart;
 use App\Models\ProductSlider;
+use App\Models\ProductWishlist;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -84,6 +85,15 @@ class ProductController extends Controller
         $userId = $request->header('id');
         $productId = $request->product_id;
         $data = ProductCart::where('user_id','=',$userId)->where('product_id','=',$productId)->delete();
+        return ResponseHelper::ResMsg('success',$data,200);
+    }
+
+    public function CreateWishList(Request $request){
+        $userId = $request->header('id');
+        $data = ProductWishlist::updateOrCreate([
+            'product_id'=>$request->product_id,
+            'user_id'=>$userId
+        ]);
         return ResponseHelper::ResMsg('success',$data,200);
     }
 }
