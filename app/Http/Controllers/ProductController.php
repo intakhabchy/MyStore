@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Helper\ResponseHelper;
+use App\Models\CustomerProfile;
 use App\Models\Product;
 use App\Models\ProductCart;
+use App\Models\ProductReview;
 use App\Models\ProductSlider;
 use App\Models\ProductWishlist;
 use Illuminate\Http\Request;
@@ -107,5 +109,23 @@ class ProductController extends Controller
         $userId = $request->header('id');
         $data = ProductWishlist::where(['user_id'=>$userId,'product_id'=>$request->product_id])->delete();
         return ResponseHelper::ResMsg('success',$data,200);
+    }
+
+    public function CreateProductReview(Request $request){
+        $userId = $request->header('id');
+        
+        $profile = CustomerProfile::where('user_id','=',$userId)->first();
+
+        if($profile){
+            // one user can review only once
+            $data = ProductReview::updateOrCreate(
+                ['user_id'=>$userId,'product_id'=>$request->input('product_id')],   // this values check
+                $request->input()
+            );
+            return ResponseHelper::ResMsg('success',$data,200);
+        }
+        else{
+            return ResponseHelper::ResMsg('fail','Customer profile not exists',200);
+        }
     }
 }
