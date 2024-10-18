@@ -128,4 +128,14 @@ class ProductController extends Controller
             return ResponseHelper::ResMsg('fail','Customer profile not exists',200);
         }
     }
+
+    public function ProductReviewById(Request $request){
+        
+        $product_id = $request->product_id;
+
+        $data = ProductReview::where('product_id','=',$product_id)->with('user')->get();
+
+        return ResponseHelper::ResMsg('success',$data,200);
+
+    }
 }

@@ -43,3 +43,4 @@ Route::get('/Productwishlist',[ProductController::class,'ProductWishList'])->mid
 Route::get('/Removewishlist/{product_id}',[ProductController::class,'RemoveWishList'])->middleware([TokenVerificationMiddleware::class]);
 
 Route::post('/Createproductreview',[ProductController::class,'CreateProductReview'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/Productreview/{product_id}',[ProductController::class,'ProductReviewById']);
