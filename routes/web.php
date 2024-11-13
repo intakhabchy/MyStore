@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TokenVerificationMiddleware;
@@ -44,3 +45,5 @@ Route::get('/Removewishlist/{product_id}',[ProductController::class,'RemoveWishL
 
 Route::post('/Createproductreview',[ProductController::class,'CreateProductReview'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/Productreview/{product_id}',[ProductController::class,'ProductReviewById']);
+
+Route::get('/InvoiceCreate',[InvoiceController::class,'InvoiceCreate'])->middleware([TokenVerificationMiddleware::class]);
