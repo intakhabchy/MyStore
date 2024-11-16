@@ -76,12 +76,37 @@ class InvoiceController extends Controller
             DB::commit();
 
             return ResponseHelper::ResMsg('success',['paymentMethod'=>$paymentMethod,'payable'=>$payable,'vat'=>$vat,'total'=>$total],200);
-
-            // start from 18:00
         }
         catch(Exception $e){
             DB::rollBack();
             return ResponseHelper::ResMsg('fail',$e->getMessage(),200);
         }
     }
+
+    function InvoiceList(Request $request){
+        $user_id = $request->header('id');
+        return Invoice::where('user_id',$user_id)->get();
+    }
+
+    function InvoiceProductList(Request $request){
+        $user_id = $request->header('id');
+        $invoice_id = $request->invoice_id;
+        return InvoiceDetail::where(['user_id'=>$user_id,'invoice_id'=>$invoice_id])->with('product')->get();
+    }
+
+    // function PaymentSuccess(Request $request){
+    //     return SSLCommerzHelper::InitialSuccess($request->query('tran_id'));
+    // }
+
+    // function PaymentCancel(Request $request){
+    //     return SSLCommerzHelper::InitialCancel($request->query('tran_id'));
+    // }
+
+    // function PaymentFail(Request $request){
+    //     return SSLCommerzHelper::InitialFail($request->query('tran_id'));
+    // }
+
+    // function PaymentIPN(Request $request){
+    //     return SSLCommerzHelper::InitialIPN($request->input('tran_url'),$request->input('status'),$request->input('val_id'));
+    // }
 }
