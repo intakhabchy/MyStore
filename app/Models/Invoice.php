@@ -18,7 +18,7 @@ class Invoice extends Model
         'ship_details',
         'shipping_method',
         'tran_id',
-        'val_id',
+        // 'val_id',
         'delivery_status',
         'payment_status',
         'user_id'

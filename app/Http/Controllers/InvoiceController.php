@@ -59,10 +59,10 @@ class InvoiceController extends Controller
             ]);
 
             $invoiceId = $invoice->id;
-
+// return;
             foreach($cartList as $cl){
                 InvoiceDetail::create([
-                    'invoice'=>$invoiceId,
+                    'invoice_id'=>$invoiceId,
                     'product_id'=>$cl->product_id,
                     'user_id'=>$user_id,
                     'qty'=>$cl->qty,
@@ -81,7 +81,7 @@ class InvoiceController extends Controller
         }
         catch(Exception $e){
             DB::rollBack();
-            return ResponseHelper::ResMsg('fail',$e,200);
+            return ResponseHelper::ResMsg('fail',$e->getMessage(),200);
         }
     }
 }
