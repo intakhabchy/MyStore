@@ -94,19 +94,19 @@ class InvoiceController extends Controller
         return InvoiceDetail::where(['user_id'=>$user_id,'invoice_id'=>$invoice_id])->with('product')->get();
     }
 
-    // function PaymentSuccess(Request $request){
-    //     return SSLCommerzHelper::InitialSuccess($request->query('tran_id'));
-    // }
+    function PaymentSuccess(Request $request){
+        return SSLCommerzHelper::InitiateSuccess($request->query('tran_id'));
+    }
 
-    // function PaymentCancel(Request $request){
-    //     return SSLCommerzHelper::InitialCancel($request->query('tran_id'));
-    // }
+    function PaymentCancel(Request $request){
+        return SSLCommerzHelper::InitiateCancel($request->query('tran_id'));
+    }
 
-    // function PaymentFail(Request $request){
-    //     return SSLCommerzHelper::InitialFail($request->query('tran_id'));
-    // }
+    function PaymentFail(Request $request){
+        return SSLCommerzHelper::InitiateFail($request->query('tran_id'));
+    }
 
-    // function PaymentIPN(Request $request){
-    //     return SSLCommerzHelper::InitialIPN($request->input('tran_url'),$request->input('status'),$request->input('val_id'));
-    // }
+    function PaymentIPN(Request $request){
+        return SSLCommerzHelper::InitiateIPN($request->input('tran_url'),$request->input('status'),$request->input('val_id'));
+    }
 }

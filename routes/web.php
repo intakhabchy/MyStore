@@ -49,3 +49,7 @@ Route::get('/Productreview/{product_id}',[ProductController::class,'ProductRevie
 Route::get('/InvoiceCreate',[InvoiceController::class,'InvoiceCreate'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/Invoicelist',[InvoiceController::class,'InvoiceList'])->middleware(TokenVerificationMiddleware::class);
 Route::get('/Invoiceproductlist/{invoice_id}',[InvoiceController::class,'InvoiceProductList'])->middleware(TokenVerificationMiddleware::class);
+
+Route::post('/PaymentSuccess',[InvoiceController::class,'PaymentSuccess']);
+Route::post('/PaymentCancel',[InvoiceController::class,'PaymentCancel']);
+Route::post('/PaymentFail',[InvoiceController::class,'PaymentFail']);

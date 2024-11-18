@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 
+use App\Models\Invoice;
 use App\Models\Sslcommerz;
 use Illuminate\Support\Facades\Http;
 
@@ -44,5 +45,25 @@ class SSLCommerzHelper{
             'product_amount'=>$payable
         ]);
         return $response->json('desc');
+    }
+
+    public static function InitiateFail($tran_id){
+        Invoice::where(['tran_id'=>$tran_id,'val_id'=>0])->update(['payment_status'=>'Fail']);
+        return 1;
+    }
+
+    public static function InitiateSuccess($tran_id){
+        Invoice::where(['tran_id'=>$tran_id,'val_id'=>0])->update(['payment_status'=>'Success']);
+        return 1;
+    }
+
+    public static function InitiateCancel($tran_id){
+        Invoice::where(['tran_id'=>$tran_id,'val_id'=>0])->update(['payment_status'=>'Cancel']);
+        return 1;
+    }
+
+    public static function InitiateIPN($tran_id,$status,$val_id){
+        Invoice::where(['tran_id'=>$tran_id,'val_id'=>0])->update(['payment_status'=>$status,'val_id'=>$val_id]);
+        return 1;
     }
 }
