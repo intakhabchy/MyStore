@@ -40,6 +40,7 @@
 <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 
+<script src="{{asset('assets/js/axios.min.js')}}"></script>
 </head>
 
 <body>
@@ -85,7 +86,7 @@
 <!-- scripts js --> 
 <script src="{{asset('assets/js/scripts.js')}}"></script>
 
-<script src="{{asset('assets/js/axios.min.js')}}"></script>
+
 
 </body>
 </html>

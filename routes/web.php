@@ -25,7 +25,7 @@ Route::get('/',[HomeController::class,'homePage']);
 Route::post('/Registration',[UserController::class,'UserRegistration']);
 Route::post('/Login',[UserController::class,'UserLogin']);
 
-Route::get('/Categorylist',[CategoryController::class,'CategoryList'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/Categorylist',[CategoryController::class,'CategoryList']);
 Route::get('/Brandlist',[BrandController::class,'BrandList'])->middleware([TokenVerificationMiddleware::class]);
 
 Route::get('/Productlist',[ProductController::class,'ProductList'])->middleware([TokenVerificationMiddleware::class]);
