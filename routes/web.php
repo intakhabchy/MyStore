@@ -44,6 +44,7 @@ Route::get('/Removewishlist/{product_id}',[ProductController::class,'RemoveWishL
 
 Route::post('/Createproductreview',[ProductController::class,'CreateProductReview'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/Productreview/{product_id}',[ProductController::class,'ProductReviewById']);
+Route::get('/ProductByRemark/{remarks}',[ProductController::class,'ProductByRemark']);
 
 Route::get('/InvoiceCreate',[InvoiceController::class,'InvoiceCreate'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/Invoicelist',[InvoiceController::class,'InvoiceList'])->middleware(TokenVerificationMiddleware::class);

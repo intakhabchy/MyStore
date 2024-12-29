@@ -138,4 +138,12 @@ class ProductController extends Controller
         return ResponseHelper::ResMsg('success',$data,200);
 
     }
+
+    public function ProductByRemark(Request $request){
+        $remarks = $request->remarks;
+
+        $data = Product::where('remarks','=',$remarks)->with(['brand','category'])->get();
+        return ResponseHelper::ResMsg('success',$data,200);
+
+    }
 }
