@@ -56,7 +56,7 @@
 <!-- END SECTION SHOP -->
 
 <script>
-    newArrival();
+    // newArrival();
     async function newArrival(){
         let res = await axios.get('/ProductByRemark/NEW');
         
@@ -111,7 +111,7 @@
         });
     }
 
-    bestSeller();
+    // bestSeller();
     async function bestSeller(){
         let res = await axios.get('ProductByRemark/BESTSELLER');
 
@@ -167,7 +167,7 @@
         });
     }
 
-    featured();
+    // featured();
     async function featured(){
         let res = await axios.get('ProductByRemark/FEATURED');
 
@@ -221,7 +221,7 @@
         });
     }
 
-    specialOffer();
+    // specialOffer();
     async function specialOffer(){
         let res = await axios.get('/ProductByRemark/SPEACIALOFFER');
 

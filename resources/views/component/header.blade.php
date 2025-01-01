@@ -98,7 +98,7 @@
 
 
 <script>
-    category();
+    // category();
     async function category() {
         let res = await axios.get('/Categorylist');
 

@@ -11,7 +11,7 @@
 <!-- END SECTION BANNER -->
 
 <script>
-    Hero();
+    // Hero();
     
     async function Hero(){
         let res = await axios.get('/Productslider');
