@@ -29,10 +29,11 @@ Route::get('/Categorylist',[CategoryController::class,'CategoryList']);
 Route::get('/Brandlist',[BrandController::class,'BrandList'])->middleware([TokenVerificationMiddleware::class]);
 
 Route::get('/Productlist',[ProductController::class,'ProductList'])->middleware([TokenVerificationMiddleware::class]);
-Route::get('/Productbycategory/{id}',[ProductController::class,'ProductByCategory'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/Productbycategory/{id}',[ProductController::class,'ProductByCategory']);
 Route::get('/Productbybrand/{id}',[ProductController::class,'ProductByBrand'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/Productdetailbyid/{id}',[ProductController::class,'ProductDetailById'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/Productslider',[ProductController::class,'ProductSlider']);
+Route::get('/CategoryProduct',[CategoryController::class,'ProductByCaegoryPage']);
 
 Route::post('/Addtocart',[ProductController::class,'AddProductToCart'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/Cartlist',[ProductController::class,'CartList'])->middleware([TokenVerificationMiddleware::class]);
