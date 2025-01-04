@@ -41,6 +41,10 @@
 <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 
 <script src="{{asset('assets/js/axios.min.js')}}"></script>
+
+<!-- Latest jQuery --> 
+<script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
+
 </head>
 
 <body>
@@ -57,8 +61,7 @@
 
 @yield('content')
 
-<!-- Latest jQuery --> 
-<script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
+
 <!-- popper min js -->
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
 <!-- Latest compiled and minified Bootstrap --> 
