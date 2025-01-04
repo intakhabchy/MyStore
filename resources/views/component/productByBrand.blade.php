@@ -4,7 +4,7 @@
         <div class="row align-items-center">
         	<div class="col-md-6">
                 <div class="page-title">
-            		<h1>Shop Load More</h1>
+            		<h1>Brand: <span id="span_brandName"></span></h1>
                 </div>
             </div>
             <div class="col-md-6">
@@ -102,6 +102,8 @@
                             </div>
                         </div>`;
                         $("#div_itemByBrand").append(eachItem);
+
+                        $("#span_brandName").text(res.data['data'][0]['brand']['brand_name']);
         });
     }
 </script>
