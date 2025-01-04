@@ -14,15 +14,18 @@
     @include('component.subscribe')
 
     <script>
-        (async()=>{
-            await category();
-            await Hero();
-
-            await newArrival();
-            await bestSeller();
-            await featured();
-            await specialOffer();
-        })()
+        (async () => {
+            try {
+                await category();
+                await Hero();
+                await newArrival();
+                await bestSeller();
+                await featured();
+                await specialOffer();
+            } catch (error) {
+                console.error("Error in initialization:", error);
+            }
+        })();
     </script>
 
     </div>

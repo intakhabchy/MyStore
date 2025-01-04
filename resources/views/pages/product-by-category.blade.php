@@ -5,7 +5,11 @@
 
     <script>
         (async()=>{
-            await category();
+            try{
+                await category();
+            }catch (error) {
+                console.error("Error in initialization:", error);
+            }
         })()
     </script>
     
