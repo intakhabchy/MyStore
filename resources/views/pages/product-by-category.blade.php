@@ -7,6 +7,7 @@
         (async()=>{
             try{
                 await category();
+                await brand();
             }catch (error) {
                 console.error("Error in initialization:", error);
             }
