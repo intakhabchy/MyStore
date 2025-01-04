@@ -5,5 +5,12 @@
 
     @include('component.productByCategory')
 
+    <script>
+        (async()=>{
+            await category();
+            await productByCategory();
+        })()
+    </script>
+
     @include('component.footer')
 @endsection

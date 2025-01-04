@@ -105,7 +105,7 @@
         $('#categoryItem').empty();
 
         res.data['data'].forEach((item,i)=>{
-            let eachItem = `<li><a class="dropdown-item nav-link nav_item" href="about.html">${item['category_name']}</a></li>`;
+            let eachItem = `<li><a class="dropdown-item nav-link nav_item" href="/CategoryProduct?id=${item['id']}">${item['category_name']}</a></li>`;
             $('#categoryItem').append(eachItem);
         })
     }
