@@ -125,7 +125,7 @@
         $('#brandList').empty();
 
         res.data['data'].forEach((item,i)=>{
-            let eachItem = `<li><a class="dropdown-item nav-link nav_item" href="/Brandlist?id=${item['id']}">${item['brand_name']}</a></li>`;
+            let eachItem = `<li><a class="dropdown-item nav-link nav_item" href="/BrandProduct?id=${item['id']}">${item['brand_name']}</a></li>`;
             $('#brandList').append(eachItem);
         });
     }
