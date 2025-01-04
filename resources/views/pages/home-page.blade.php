@@ -17,6 +17,7 @@
         (async () => {
             try {
                 await category();
+                await brand();
                 await Hero();
                 await newArrival();
                 await bestSeller();

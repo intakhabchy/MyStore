@@ -57,6 +57,14 @@
                                 </ul>
                             </div>
                         </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle nav-link" data-bs-toggle="dropdown">Brand</a>
+                            <div class="dropdown-menu">
+                                <ul id="brandList"> 
+                                    
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <ul class="navbar-nav attr-nav align-items-center">
@@ -108,5 +116,17 @@
             let eachItem = `<li><a class="dropdown-item nav-link nav_item" href="/CategoryProduct?id=${item['id']}">${item['category_name']}</a></li>`;
             $('#categoryItem').append(eachItem);
         })
+    }
+
+    // brand();
+    async function brand(){
+        let res = await axios.get('/Brandlist');
+
+        $('#brandList').empty();
+
+        res.data['data'].forEach((item,i)=>{
+            let eachItem = `<li><a class="dropdown-item nav-link nav_item" href="/Brandlist?id=${item['id']}">${item['brand_name']}</a></li>`;
+            $('#brandList').append(eachItem);
+        });
     }
 </script>
