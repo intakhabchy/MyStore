@@ -3,14 +3,12 @@
     @include('component.popup')
     @include('component.header')
 
-    @include('component.productByCategory')
-
     <script>
         (async()=>{
             await category();
-            await productByCategory();
         })()
     </script>
-
+    
+    @include('component.productByCategory')
     @include('component.footer')
 @endsection

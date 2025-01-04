@@ -41,7 +41,7 @@
 
 <script>
 
-    // productByCategory();
+    productByCategory();
     async function productByCategory(){
         let searchParam = new URLSearchParams(window.location.search);
         let id = searchParam.get('id');
