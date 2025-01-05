@@ -23,6 +23,7 @@
                 await bestSeller();
                 await featured();
                 await specialOffer();
+                await policy();
             } catch (error) {
                 console.error("Error in initialization:", error);
             }

@@ -15,6 +15,6 @@
         })()
     </script>
     
-    @include('component.productByBrand')
+    @include('component.policydescription')
     @include('component.footer')
 @endsection

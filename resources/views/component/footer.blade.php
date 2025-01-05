@@ -24,7 +24,7 @@
                 	<div class="widget">
                         <h6 class="widget_title">Useful Links</h6>
                         <ul class="widget_links">
-                            <li><a href="#">About Us</a></li>
+                            <li><a href="/Policy?type=about">About Us</a></li>
                             <li><a href="#">FAQ</a></li>
                             <li><a href="#">Location</a></li>
                             <li><a href="#">Affiliates</a></li>
