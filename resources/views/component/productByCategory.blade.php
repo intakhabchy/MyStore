@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div class="product_info">
-                                    <h6 class="product_title"><a href="shop-product-detail.html">${item['title']}</a></h6>
+                                    <h6 class="product_title"><a href="/detail?id=${item['id']}">${item['title']}</a></h6>
                                     <div class="product_price">
                                         <span class="price">$${item['price']}</span>
                                         <del>$55.25</del>

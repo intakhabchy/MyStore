@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function ProductDetailPage(){
+        return view('pages.product-detail');
+    }
+
     public function ProductList(){
         $data = Product::with(['brand','category'])->get();
         return ResponseHelper::ResMsg('status',$data,200);

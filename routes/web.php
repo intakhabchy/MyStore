@@ -28,6 +28,8 @@ Route::get('/BrandProduct',[BrandController::class,'ProductByBrandPage']);
 Route::get('/Policy',[PolicyController::class,'Policy']);
 Route::get('/PolicyByType/{type}',[PolicyController::class,'PolicyByType']);
 
+Route::get('/detail',[ProductController::class,'ProductDetailPage']);
+
 Route::post('/Registration',[UserController::class,'UserRegistration']);
 Route::post('/Login',[UserController::class,'UserLogin']);
 
