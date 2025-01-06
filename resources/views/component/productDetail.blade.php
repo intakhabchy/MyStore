@@ -61,9 +61,9 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="pr_detail">
                         <div class="product_description">
-                            <h4 class="product_title"><a href="#">Blue Dress For Woman</a></h4>
+                            <h4 class="product_title"><a href="#" id="txt_title"></a></h4>
                             <div class="product_price">
-                                <span class="price">$45.00</span>
+                                <span class="price" id="txt_price"></span>
                                 <del>$55.25</del>
                                 <div class="on_sale">
                                     <span>35% Off</span>
@@ -76,7 +76,7 @@
                                     <span class="rating_num">(21)</span>
                                 </div>
                             <div class="pr_desc">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
+                                <p id="txt_description"></p>
                             </div>
                             <div class="product_sort_info">
                                 <ul>
@@ -270,3 +270,22 @@
     </div>
     <!-- END SECTION SHOP -->
 </div>
+
+<script>
+    productDetailById();
+    async function productDetailById(){
+
+        let searchParam = new URLSearchParams(window.location.search);
+        let id = searchParam.get('id');
+        // alert(id);
+        let res = await axios.get(`/Productdetailbyid/${id}`);
+
+        let title = res.data['data'][0]['title'];
+        let price = '$'+res.data['data'][0]['price'];
+        let description = res.data['data'][0]['short_description']
+
+        $('#txt_title').text(title);
+        $('#txt_price').text(price);
+        $('#txt_description').text(description);
+    }
+</script>
