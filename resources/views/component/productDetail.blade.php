@@ -122,7 +122,8 @@
                         <hr />
                         <ul class="product-meta">
                             <li>SKU: <a href="#">BE45VGRT</a></li>
-                            <li>Category: <a href="#">Clothing</a></li>
+                            <li>Category: <a href="#" id="txt_category"></a></li>
+                            <li>Brand: <a href="#" id="txt_brand"></a></li>
                             <li>Tags: <a href="#" rel="tag">Cloth</a>, <a href="#" rel="tag">printed</a> </li>
                         </ul>
                         
@@ -282,10 +283,14 @@
 
         let title = res.data['data'][0]['title'];
         let price = '$'+res.data['data'][0]['price'];
-        let description = res.data['data'][0]['short_description']
+        let description = res.data['data'][0]['short_description'];
+        let category = res.data['data'][0]['category']['category_name'];
+        let brand = res.data['data'][0]['brand']['brand_name'];
 
         $('#txt_title').text(title);
         $('#txt_price').text(price);
         $('#txt_description').text(description);
+        $('#txt_category').text(category);
+        $('#txt_brand').text(brand);
     }
 </script>
