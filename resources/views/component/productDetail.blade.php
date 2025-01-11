@@ -96,11 +96,11 @@
                             <div class="pr_switch_wrap">
                                 <span class="switch_lable">Size</span>
                                 <div class="product_size_switch">
-                                    <span>xs</span>
-                                    <span>s</span>
-                                    <span>m</span>
-                                    <span>l</span>
-                                    <span>xl</span>
+                                    <span data-size="xs">xs</span>
+                                    <span data-size="s">s</span>
+                                    <span data-size="m">m</span>
+                                    <span data-size="l">l</span>
+                                    <span data-size="xl">xl</span>
                                 </div>
                             </div>
                         </div>
@@ -109,14 +109,14 @@
                             <div class="cart-product-quantity">
                                 <div class="quantity">
                                     <input type="button" value="-" class="minus">
-                                    <input type="text" name="quantity" value="1" title="Qty" class="qty" size="4">
+                                    <input type="text" id="p_qty" name="quantity" value="1" title="Qty" class="qty" size="4">
                                     <input type="button" value="+" class="plus">
                                 </div>
                             </div>
                             <div class="cart_btn">
-                                <button class="btn btn-fill-out btn-addtocart" type="button"><i class="icon-basket-loaded"></i> Add to cart</button>
+                                <button class="btn btn-fill-out btn-addtocart" onclick="addToCart()" type="button"><i class="icon-basket-loaded"></i> Add to cart</button>
                                 <a class="add_compare" href="#"><i class="icon-shuffle"></i></a>
-                                <a class="add_wishlist" href="#"><i class="icon-heart"></i></a>
+                                <a class="add_wishlist" onclick="addToWishlist()" href="#"><i class="icon-heart"></i></a>
                             </div>
                         </div>
                         <hr />
@@ -273,11 +273,13 @@
 </div>
 
 <script>
+    let searchParam = new URLSearchParams(window.location.search);
+    let id = searchParam.get('id');
+
     productDetailById();
     async function productDetailById(){
 
-        let searchParam = new URLSearchParams(window.location.search);
-        let id = searchParam.get('id');
+
         // alert(id);
         let res = await axios.get(`/Productdetailbyid/${id}`);
 
@@ -292,5 +294,92 @@
         $('#txt_description').text(description);
         $('#txt_category').text(category);
         $('#txt_brand').text(brand);
+    }
+
+    // Cart - start
+    
+    // Global variable to store the selected size
+    let selectedSize = null;
+
+    // Function to handle size selection
+    function initializeSizeSelection() {
+        let sizeElements = document.querySelectorAll('.product_size_switch span');
+
+        // Add a click event listener to each size element
+        sizeElements.forEach(span => {
+            span.addEventListener('click', function () {
+                // Remove any previously selected size's "active" state (optional visual feedback)
+                sizeElements.forEach(el => el.classList.remove('active'));
+
+                // Mark the clicked size as active
+                this.classList.add('active');
+
+                // Update the selected size
+                selectedSize = this.textContent.trim();
+
+                // console.log('Selected Size:', selectedSize); // Log for debugging
+            });
+        });
+    }
+
+    // Initialize size selection on page load
+    document.addEventListener('DOMContentLoaded', initializeSizeSelection);
+
+    // Function to handle adding to cart
+    async function addToCart() {
+        try {
+            // Fetch quantity
+            let p_qty = document.getElementById('p_qty').value;
+
+            // Fetch color
+            let colorElement = document.querySelector('.product_color_switch .active');
+            let p_color = colorElement ? colorElement.getAttribute('data-color') : null;
+
+            let p_size = selectedSize;
+
+            console.log('qty : '+p_qty);
+            console.log('size : '+p_size);
+            console.log('color : '+p_color);
+
+            if(p_qty==0){
+                alert("Please select a quantity");
+            }
+            else if(p_color==null){
+                alert("Please select a color");
+            }
+            else if(p_size==null){
+                alert("Please select a size");
+            }
+            else{                
+                let jsonProductData = {
+                    product_id: id,
+                    color: p_color,
+                    size: selectedSize,
+                    qty: p_qty
+                };
+
+                let res = await axios.post('/Addtocart', jsonProductData);
+                console.log(res.data);
+            }
+        } catch (e) {
+            if (e.response) {
+                window.location.href = "/login";
+            } else {
+                console.error('Error adding to cart:', e);
+            }
+        }
+    }
+
+    // Cart - end
+
+    async function addToWishlist(){
+        
+        try{
+            let res = await axios.get('/Createwishlist/'+id);
+        }catch(e){
+            if(e.response.status==401){
+                window.location.href="/login";
+            }
+        }
     }
 </script>
