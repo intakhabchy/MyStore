@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function LoginPage(){
+        return view('pages.login-page');
+    }
     public function UserRegistration(Request $request){
         try{
             $user = User::create([

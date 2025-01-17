@@ -363,7 +363,7 @@
             }
         } catch (e) {
             if (e.response) {
-                window.location.href = "/login";
+                window.location.href = "/login-page";
             } else {
                 console.error('Error adding to cart:', e);
             }

@@ -15,6 +15,7 @@
         })()
     </script>
     
-    @include('component.policydescription')
+    {{-- work on login component - create and add code --}}
+    @include('component.loginForm')        
     @include('component.footer')
 @endsection

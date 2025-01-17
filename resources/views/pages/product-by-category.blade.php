@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    @include('component.popup')
+    {{-- @include('component.popup') --}}
     @include('component.header')
 
     <script>

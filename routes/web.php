@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[HomeController::class,'homePage']);
 Route::get('/CategoryProduct',[CategoryController::class,'ProductByCaegoryPage']);
 Route::get('/BrandProduct',[BrandController::class,'ProductByBrandPage']);
+Route::get('/login-page',[UserController::class,'LoginPage']);
 
 Route::get('/Policy',[PolicyController::class,'Policy']);
 Route::get('/PolicyByType/{type}',[PolicyController::class,'PolicyByType']);
