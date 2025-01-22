@@ -34,10 +34,10 @@
                             </div>
                             <form method="post">
                                 <div class="form-group mb-3">
-                                    <input type="text" required="" class="form-control" name="email" placeholder="Your Email">
+                                    <input type="text" required="" class="form-control" name="email" id="email" placeholder="Your Email">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input class="form-control" required="" type="password" name="password" placeholder="Password">
+                                    <input class="form-control" required="" type="password" name="password" id="password" placeholder="Password">
                                 </div>
                                 <div class="login_footer form-group mb-3">
                                     <div class="chek-form">
@@ -49,16 +49,16 @@
                                     <a href="#">Forgot password?</a>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <button type="submit" class="btn btn-fill-out btn-block" name="login">Log in</button>
+                                    <button onclick="Login()" type="button" class="btn btn-fill-out btn-block" name="login">Log in</button>
                                 </div>
                             </form>
-                            <div class="different_login">
+                            {{-- <div class="different_login">
                                 <span> or</span>
-                            </div>
-                            <ul class="btn-login list_none text-center">
+                            </div> --}}
+                            {{-- <ul class="btn-login list_none text-center">
                                 <li><a href="#" class="btn btn-facebook"><i class="ion-social-facebook"></i>Facebook</a></li>
                                 <li><a href="#" class="btn btn-google"><i class="ion-social-googleplus"></i>Google</a></li>
-                            </ul>
+                            </ul> --}}
                             <div class="form-note text-center">Don't Have an Account? <a href="signup.html">Sign up now</a></div>
                         </div>
                     </div>
@@ -68,3 +68,28 @@
     </div>
     <!-- END LOGIN SECTION -->
 </div> 
+
+<script>
+    async function Login(){
+        let email = $("#email").val();
+        let password = $("#password").val();
+
+        console.log("Email: "+email);
+        console.log("Password: "+password);
+
+        let jsonLogin = {
+            email: email,
+            password: password
+        }
+
+        let res = await axios.post('/Login',jsonLogin);
+
+        if(res.status===200){
+            // alert("Res Code: "+res.data['token']);
+            if(sessionStorage.getItem("last_location"))
+                window.location.href = sessionStorage.getItem("last_location");
+            else
+                window.location.href = "/";
+        }
+    }
+</script>

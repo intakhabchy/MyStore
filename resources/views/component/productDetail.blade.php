@@ -337,9 +337,9 @@
 
             let p_size = selectedSize;
 
-            console.log('qty : '+p_qty);
-            console.log('size : '+p_size);
-            console.log('color : '+p_color);
+            // console.log('qty : '+p_qty);
+            // console.log('size : '+p_size);
+            // console.log('color : '+p_color);
 
             if(p_qty==0){
                 alert("Please select a quantity");
@@ -359,10 +359,11 @@
                 };
 
                 let res = await axios.post('/Addtocart', jsonProductData);
-                console.log(res.data);
+                // console.log(res.data);
             }
         } catch (e) {
             if (e.response) {
+                sessionStorage.setItem("last_location",window.location.href);
                 window.location.href = "/login-page";
             } else {
                 console.error('Error adding to cart:', e);
@@ -377,8 +378,9 @@
         try{
             let res = await axios.get('/Createwishlist/'+id);
         }catch(e){
-            if(e.response.status==401){
-                window.location.href="/login";
+            if(e.response){
+                sessionStorage.setItem("last_location",window.location.href);
+                window.location.href = "/login-page";
             }
         }
     }
