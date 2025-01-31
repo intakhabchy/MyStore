@@ -76,7 +76,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="#" class="btn btn-fill-out">Proceed To CheckOut</a>
+                        <a href="#" class="btn btn-fill-out" onclick="Invoice()">Proceed To CheckOut</a>
                     </div>
                 </div>
             </div>
@@ -131,6 +131,28 @@
         }
         else{
             alert("Remove failed");
+        }
+    }
+
+    async function Invoice(){
+        let res = await axios.get("/InvoiceCreate");
+
+        if(res.status == 200){
+
+            $("#payment_method_modal").modal('show');
+
+            res.data['data']['paymentMethod'].forEach((item,i)=>{
+                let eachItem = `<tr>
+                                    <td><img src="${item['logo']}"></td>
+                                    <td>${item['name']}</td>
+                                    <td><a class="btn btn-danger btn-sm" href="${item['redirectGatewayURL']}']}">Pay</a></td>
+                                </tr>`;
+                
+               $("#payment_method_table").append(eachItem); 
+            });
+        }
+        else{
+            alert("Invoice failed!!!");
         }
     }
 </script>

@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
     @include('component.header')
-
+    @include('component.paymentMethodList')
     <script>
         (async()=>{
             try{
