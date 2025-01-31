@@ -95,7 +95,10 @@ class InvoiceController extends Controller
     }
 
     function PaymentSuccess(Request $request){
-        return SSLCommerzHelper::InitiateSuccess($request->query('tran_id'));
+        // return SSLCommerzHelper::InitiateSuccess($request->query('tran_id'));
+
+        SSLCommerzHelper::InitiateSuccess($request->query('tran_id'));
+        return view('pages.payment-complete-page');
     }
 
     function PaymentCancel(Request $request){
