@@ -29,7 +29,13 @@
                        	<ul class="header_list">
                         	<li><a href="compare.html"><i class="ti-control-shuffle"></i><span>Compare</span></a></li>
                             <li><a href="{{url('/wishlist-page')}}"><i class="ti-heart"></i><span>Wishlist</span></a></li>
-                            <li><a href="{{url('/login-page')}}"><i class="ti-user"></i><span>Login</span></a></li>
+
+                            @if(Cookie::get('token')!==null) 
+                                <li><a href="{{url('/profile-page')}}"><i class="ti-user"></i><span>Profile</span></a></li>
+                                <li><a href="{{url('/Logout')}}"><i class="ti-user"></i><span>Logout</span></a></li>
+                            @else
+                               <li><a href="{{url('/login-page')}}"><i class="ti-user"></i><span>Login</span></a></li>
+                            @endif
 						</ul>
                     </div>
                 </div>

@@ -73,4 +73,8 @@ class UserController extends Controller
             return response()->json(['status'=>'unauthorized','message'=>'Unauthorized Email'],400);
         }
     }
+
+    public function UserLogout(){
+        return redirect('/')->cookie('token','',-1);
+    }
 }

@@ -35,6 +35,7 @@ Route::get('/detail',[ProductController::class,'ProductDetailPage']);
 
 Route::post('/Registration',[UserController::class,'UserRegistration']);
 Route::post('/Login',[UserController::class,'UserLogin']);
+Route::get('/Logout',[UserController::class,'UserLogout']);
 
 Route::get('/Categorylist',[CategoryController::class,'CategoryList']);
 Route::get('/Brandlist',[BrandController::class,'BrandList']);
