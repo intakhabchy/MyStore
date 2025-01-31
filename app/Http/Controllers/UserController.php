@@ -8,6 +8,7 @@ use App\Models\CustomerProfile;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -56,11 +57,13 @@ class UserController extends Controller
             if(Hash::check($request->input('password'),$user[0]['password'])){
                 $token = JWTToken::CreateToken($email,$user[0]['id']);
 
+                DB::insert('INSERT INTO token_log_controller (token,date_time) VALUES (?,?)', [$token,date('Y-m-d H:i:s')]);
+
                 return response()->json([
                     'status'=>'successs',
                     'message'=>'User Login Successful',
                     'token'=>$token
-                ],200);
+                ],200)->cookie('token', $token, 60);
             }
             else{
                 return response()->json(['status'=>'failed','message'=>'Login Failed'],400);
