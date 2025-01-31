@@ -116,7 +116,7 @@
                             <div class="cart_btn">
                                 <button class="btn btn-fill-out btn-addtocart" onclick="addToCart()" type="button"><i class="icon-basket-loaded"></i> Add to cart</button>
                                 <a class="add_compare" href="#"><i class="icon-shuffle"></i></a>
-                                <a class="add_wishlist" onclick="addToWishlist()" href="#"><i class="icon-heart"></i></a>
+                                <a class="add_wishlist" onclick="addToWishlist()"><i class="icon-heart"></i></a>
                             </div>
                         </div>
                         <hr />
@@ -377,7 +377,8 @@
         
         try{
             let res = await axios.get('/Createwishlist/'+id);
-        }catch(e){
+            // window.location.href='/wishlist-page';
+        }catch(e){            
             if(e.response){
                 sessionStorage.setItem("last_location",window.location.href);
                 window.location.href = "/login-page";
