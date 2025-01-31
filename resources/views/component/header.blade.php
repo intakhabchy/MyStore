@@ -31,8 +31,8 @@
                             <li><a href="{{url('/wishlist-page')}}"><i class="ti-heart"></i><span>Wishlist</span></a></li>
 
                             @if(Cookie::get('token')!==null) 
-                                <li><a href="{{url('/profile-page')}}"><i class="ti-user"></i><span>Profile</span></a></li>
-                                <li><a href="{{url('/Logout')}}"><i class="ti-user"></i><span>Logout</span></a></li>
+                                <li><a href="{{url('/profile-page')}}"><i class="ti-id-badge"></i><span>Profile</span></a></li>
+                                <li><a href="{{url('/Logout')}}"><i class="ti-lock"></i><span>Logout</span></a></li>
                             @else
                                <li><a href="{{url('/login-page')}}"><i class="ti-user"></i><span>Login</span></a></li>
                             @endif
