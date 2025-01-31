@@ -70,12 +70,32 @@
                                 <td class="product-price" data-title="Price">$${item['product']['price']}</td>
                                     <td class="product-stock-status" data-title="Stock Status"><span class="badge rounded-pill text-bg-success">In Stock</span></td>
                                 <td class="product-add-to-cart"><a href="#" class="btn btn-fill-out"><i class="icon-basket-loaded"></i> Add to Cart</a></td>
-                                <td class="product-remove" data-title="Remove"><a href="#"><i class="ti-close"></i></a></td>
+                                <td class="product-remove" data-title="Remove"><button class="btn btn-danger" data-id="${item['product']['id']}">Remove</button></td>
                             </tr>`;
 
             $('#wishlist_table').append(eachItem);
-        });
+        });   
+    }
 
-        
+    document.addEventListener("DOMContentLoaded", function(){
+        document.querySelectorAll('.btn-danger').forEach(button => {
+            button.addEventListener('click', function() {
+                let id = this.getAttribute('data-id');
+
+                if(confirm("Do you want to remove this item from wishlist?"))
+                    Removewishlist(id);
+            });
+        });
+    });
+
+    async function Removewishlist(id){
+        let res = await axios.get("Removewishlist/"+id);
+
+        if(res.status == 200){
+            window.location.reload();
+        }
+        else{
+            alert("Remove failed");
+        }
     }
 </script>
