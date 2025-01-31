@@ -360,6 +360,9 @@
 
                 let res = await axios.post('/Addtocart', jsonProductData);
                 // console.log(res.data);
+
+                if(res.status == 200)
+                    alert("Successfully added to cart");
             }
         } catch (e) {
             if (e.response) {

@@ -26,6 +26,7 @@ Route::get('/CategoryProduct',[CategoryController::class,'ProductByCaegoryPage']
 Route::get('/BrandProduct',[BrandController::class,'ProductByBrandPage']);
 Route::get('/login-page',[UserController::class,'LoginPage']);
 Route::get('/wishlist-page',[ProductController::class,'WishlistPage']);
+Route::get('/cartlist-page',[ProductController::class,'CartlistPage']);
 
 Route::get('/Policy',[PolicyController::class,'Policy']);
 Route::get('/PolicyByType/{type}',[PolicyController::class,'PolicyByType']);
