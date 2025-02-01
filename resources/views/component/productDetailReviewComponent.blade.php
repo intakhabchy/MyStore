@@ -9,7 +9,7 @@
                     <a class="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info" role="tab" aria-controls="Additional-info" aria-selected="false">Additional info</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews" role="tab" aria-controls="Reviews" aria-selected="false">Reviews (2)</a>
+                    <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews" role="tab" aria-controls="Reviews" aria-selected="false">Reviews (<span id="review_cnt_tab"></span>)</a>
                   </li>
             </ul>
             <div class="tab-content shop_info_tab">
@@ -39,7 +39,7 @@
                 </div>
                 <div class="tab-pane fade" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
                     <div class="comments">
-                        <h5 class="product_tab_title"><span id="review_cnt"></span> Review For <span>Blue Dress For Woman</span></h5>
+                        <h5 class="product_tab_title"><span id="review_cnt_detail"></span> Review For <span>Blue Dress For Woman</span></h5>
                         <ul class="list_none comment_list mt-4" id="review_table">
                                                         
                         </ul>
@@ -114,7 +114,8 @@
             $("#review_table").append(eachItem);
         });
 
-        $("#review_cnt").html(review_cnt);
+        $("#review_cnt_tab").html(review_cnt);
+        $("#review_cnt_detail").html(review_cnt);
     }
 
     // submit reting - start
