@@ -77,4 +77,8 @@ class UserController extends Controller
     public function UserLogout(){
         return redirect('/')->cookie('token','',-1);
     }
+
+    public function UserProfile(){
+        return view('pages.profile-page');
+    }
 }

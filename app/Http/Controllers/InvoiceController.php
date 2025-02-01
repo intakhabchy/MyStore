@@ -85,7 +85,8 @@ class InvoiceController extends Controller
 
     function InvoiceList(Request $request){
         $user_id = $request->header('id');
-        return Invoice::where('user_id',$user_id)->get();
+        $data = Invoice::where('user_id',$user_id)->get();
+        return ResponseHelper::ResMsg('success',$data,200);
     }
 
     function InvoiceProductList(Request $request){
