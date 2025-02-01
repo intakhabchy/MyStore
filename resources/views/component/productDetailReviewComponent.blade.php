@@ -97,6 +97,8 @@
         res.data['data'].forEach((item,i)=>{
             review_cnt++;
 
+            let rating = (item['rating']/5)*100;
+
             let eachItem = `<li>
                                 <div class="comment_img">
                                     <img src="assets/images/user1.jpg" alt="user1"/>
@@ -104,7 +106,7 @@
                                 <div class="comment_block">
                                     <div class="rating_wrap">
                                         <div class="rating">
-                                            <div class="product_rate" style="width:80%"></div>
+                                            <div class="product_rate" style="width:${rating}%"></div>
                                         </div>
                                     </div>
                                     <p class="customer_meta">
