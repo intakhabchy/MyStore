@@ -13,11 +13,11 @@
                   </li>
             </ul>
             <div class="tab-content shop_info_tab">
-                  <div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
+                <div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
                     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Vivamus bibendum magna Lorem ipsum dolor sit amet, consectetur adipiscing elit.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
                     <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
-                  </div>
-                  <div class="tab-pane fade" id="Additional-info" role="tabpanel" aria-labelledby="Additional-info-tab">
+                </div>
+                <div class="tab-pane fade" id="Additional-info" role="tabpanel" aria-labelledby="Additional-info-tab">
                     <table class="table table-bordered">
                         <tr>
                             <td>Capacity</td>
@@ -36,8 +36,8 @@
                             <td>Artificial Leather</td>
                         </tr>
                     </table>
-                  </div>
-                  <div class="tab-pane fade" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
+                </div>
+                <div class="tab-pane fade" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
                     <div class="comments">
                         <h5 class="product_tab_title"><span id="review_cnt"></span> Review For <span>Blue Dress For Woman</span></h5>
                         <ul class="list_none comment_list mt-4" id="review_table">
@@ -46,32 +46,24 @@
                     </div>
                     <div class="review_form field_form">
                         <h5>Add a review</h5>
-                        <form class="row mt-3">
-                            <div class="form-group col-12 mb-3">
-                                <div class="star_rating">
-                                    <span data-value="1"><i class="far fa-star"></i></span>
-                                    <span data-value="2"><i class="far fa-star"></i></span> 
-                                    <span data-value="3"><i class="far fa-star"></i></span>
-                                    <span data-value="4"><i class="far fa-star"></i></span>
-                                    <span data-value="5"><i class="far fa-star"></i></span>
-                                </div>
+                        <div class="form-group col-12 mb-3">
+                            <div class="star_rating">
+                                <span data-value="1"><i class="far fa-star"></i></span>
+                                <span data-value="2"><i class="far fa-star"></i></span> 
+                                <span data-value="3"><i class="far fa-star"></i></span>
+                                <span data-value="4"><i class="far fa-star"></i></span>
+                                <span data-value="5"><i class="far fa-star"></i></span>
                             </div>
-                            <div class="form-group col-12 mb-3">
-                                <textarea required="required" placeholder="Your review *" class="form-control" name="message" rows="4"></textarea>
-                            </div>
-                            <div class="form-group col-md-6 mb-3">
-                                <input required="required" placeholder="Enter Name *" class="form-control" name="name" type="text">
-                             </div>
-                            <div class="form-group col-md-6 mb-3">
-                                <input required="required" placeholder="Enter Email *" class="form-control" name="email" type="email">
-                            </div>
-                           
-                            <div class="form-group col-12 mb-3">
-                                <button type="submit" class="btn btn-fill-out" name="submit" value="Submit">Submit Review</button>
-                            </div>
-                        </form>
+                        </div>
+                        <div class="form-group col-12 mb-3">
+                            <textarea required="required" placeholder="Your review *" class="form-control" name="product_review" id="product_review" rows="4"></textarea>
+                        </div>
+                        
+                        <div class="form-group col-12 mb-3">
+                            <button type="submit" onclick="submitReview()" class="btn btn-fill-out" name="submit_review" id="btn_submit_review" value="Submit">Submit Review</button>
+                        </div>
                     </div>
-                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -124,4 +116,42 @@
 
         $("#review_cnt").html(review_cnt);
     }
+
+    // submit reting - start
+
+    let product_rating = 0; // Initialize rating
+
+    // Listen for click events on stars
+    $(".star_rating span").on("click", function () {
+        product_rating = $(this).data("value"); // Get the selected star's data-value
+        $(".star_rating span i").removeClass("fas").addClass("far"); // Reset all stars
+        $(this).prevAll().addBack().find("i").removeClass("far").addClass("fas"); // Highlight selected stars
+    });
+
+    async function submitReview(){
+
+        let searchParam = new URLSearchParams(window.location.search);
+        let id_rt = searchParam.get('id');
+
+        let product_review = $("#product_review").val();
+
+        let jsonReviewData = {
+                        product_id: id_rt,
+                        rating: product_rating,
+                        reviews: product_review
+                    }
+
+        let res = await axios.post("/Createproductreview", jsonReviewData);
+        
+        if(res.status == 200){
+            alert("Review Successfully Submitted");
+            window.location.reload();
+        }
+        else{
+            alert("Review Submission Failed");
+        }
+
+    }
+
+    // submit reting - end
 </script>
