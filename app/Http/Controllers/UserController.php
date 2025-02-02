@@ -16,6 +16,11 @@ class UserController extends Controller
     public function LoginPage(){
         return view('pages.login-page');
     }
+
+    public function RegistrationPage(){
+        return view('pages.registration-page');
+    }
+    
     public function UserRegistration(Request $request){
         try{
             $user = User::create([
